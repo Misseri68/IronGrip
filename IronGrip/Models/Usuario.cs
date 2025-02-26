@@ -1,6 +1,4 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IronGrip.Models
@@ -18,7 +16,7 @@ namespace IronGrip.Models
 
 
         [Column("correo")]
-        public string Correo { get; set; }
+        public string Email { get; set; }
 
         [Column("foto")]
         public string Imagen { get; set; }
