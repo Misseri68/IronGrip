@@ -11,6 +11,7 @@ builder.Services.AddDbContext<IronGripContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddSession();
 builder.Services.AddTransient<AuthRepository>();
 
 var app = builder.Build();
@@ -28,6 +29,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

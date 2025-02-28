@@ -1,4 +1,5 @@
-﻿using IronGrip.Models;
+﻿using IronGrip.Extensions;
+using IronGrip.Models;
 using IronGrip.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,11 @@ namespace IronGrip.Controllers
             if (user != null) {
                 ViewData["MENSAJE"] = "Bienvenido A IRONGRIP, " + user.Nombre;
             }
-            return View();
+            else
+            {
+                HttpContext.Session.SetObject("USER", user);
+            }
+                return View();
         }
 
         public IActionResult Register()

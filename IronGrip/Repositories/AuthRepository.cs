@@ -18,6 +18,8 @@ namespace IronGrip.Repositories
 
         public async Task<Usuario> LoginAsync(string email, string pwd)
         {
+            if (pwd == null)  //Aquí me dejaba encriptar y guardar una contraseña nula, por algún motivo.
+            { throw new ArgumentNullException(); }
             var consulta = from datos in this.context.Usuarios
                            where datos.Email == email
                            select datos;
