@@ -64,7 +64,7 @@ namespace IronGrip.Repositories
             else
             {
                 int max = await this.context.Usuarios.MaxAsync(user => user.Id);
-                return max;
+                return max + 1;
             }
         }
     }

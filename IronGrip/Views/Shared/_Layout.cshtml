@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using IronGrip.Models
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    Usuario user = Context.Session.GetObject<Usuario>("USER");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,51 +15,65 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IronGrip.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IronGrip</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Auth</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Entrenamientos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Ejercicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Ejercicios</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+<body>
+    <div class="phone-container">
+        @if(user != null)
+        {
+            <header>
+                <nav style="background-color: #FC5B04">
+                    <div class="navbar-collapse collapse d-flex justify-content-between ms-3 me-3">
+                        <a class=""
+                           asp-controller="Home" asp-action="Home"
+                           style="color:black; text-decoration:none;">🏠︎</a>
+                        <img src="~/images/default/logo.png" style="width:100px" />
+                        <a class="d-block"
+                           asp-controller="Auth" asp-action="Register"
+                           style="color:black; text-decoration:none;">Register</a>
+                    </div>
+                </nav>
+            </header>
+        }
         <div class="container">
-            &copy; 2025 - IronGrip - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+    </div>
+   
+   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        height: 100vh; /* Ocupar toda la altura de la ventana */
+        background-image: url('/images/default/background_Default.jpg') /* Imagen de fondo */;
+        background-size: cover; /* Cubrir todo el fondo */
+        background-position: center; /* Centrar la imagen */
+    }
+
+    /* Contenedor que simula la pantalla del teléfono */
+    .phone-container {
+        width: 360px; /* Ancho de un teléfono móvil */
+        height: 640px; /* Alto de un teléfono móvil */
+        background-color: #121212; /* Fondo blanco para el "teléfono" */
+        border: 7px solid black; /* Marco del teléfono */
+        border-radius: 30px; /* Bordes redondeados */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra */
+        overflow: hidden; /* Para que el contenido no se salga del contenedor */
+    }
+
+    .phone-container{
+        color:floralwhite;
+    }
+</style>

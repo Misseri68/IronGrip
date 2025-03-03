@@ -1,1 +1,21 @@
-﻿<h1>Al ataque, </h1>
+﻿@inject IStringLocalizer<SharedResource> Localizer
+
+@model Usuario
+
+<h3> ¡Al ataque, @Model.Nombre!</h3>
+
+<div class="card">
+    <div class="card-body">
+       Estadísticas
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <button>Entrenamientos</button>
+        <button>Ejercicios</button>
+    </div>
+</div>
+
+
+<button><a asp-controller="Entrenamientos" asp-action="Create">Nuevo entrenamiento</a></button>

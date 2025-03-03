@@ -1,12 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using IronGrip.Extensions;
+using IronGrip.Models;
 
 namespace IronGrip.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Home()
         {
-            return View();
+            Usuario user = HttpContext.Session.GetObject<Usuario>("USER");
+            if(user == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            return View(user);
         }
     }
 }

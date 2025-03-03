@@ -1,17 +1,23 @@
 using IronGrip.Data;
 using IronGrip.Repositories;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
 string connectionString = builder.Configuration.GetConnectionString("SqlServerIronGrip");
 builder.Services.AddDbContext<IronGripContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<AuthRepository>();
 
 var app = builder.Build();
@@ -24,6 +30,23 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+var supportedCultures = new[]
+{
+    new CultureInfo("es"),
+    new CultureInfo("en") 
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("es"),
+    SupportedCultures = supportedCultures, 
+    SupportedUICultures = supportedCultures 
+});
+
+app.UseStaticFiles();
+
+
 app.UseRouting();
 
 app.UseAuthorization();

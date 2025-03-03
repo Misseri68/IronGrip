@@ -20,16 +20,25 @@ namespace IronGrip.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string pwd)
         {
-            Usuario user = await this.repo.LoginAsync(email, pwd);
-            if (user != null) {
-                ViewData["MENSAJE"] = "Bienvenido A IRONGRIP, " + user.Nombre;
+            if (email == null || pwd == null) {
+                ViewData["MENSAJE"] = "Debes introducir todos los campos";
             }
             else
             {
-                HttpContext.Session.SetObject("USER", user);
+                Usuario user = await this.repo.LoginAsync(email, pwd);
+                if (user != null)
+                {
+                    HttpContext.Session.SetObject("USER", user);
+                    return RedirectToAction("Home", "Home");
+                }
+                else
+                {
+                    ViewData["MENSAJE"] = "Datos incorrectos.";
+                }
             }
-                return View();
+            return View();
         }
+        
 
         public IActionResult Register()
         {
