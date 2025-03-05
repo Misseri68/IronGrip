@@ -8,5 +8,7 @@ namespace IronGrip.Data
         public IronGripContext(DbContextOptions<IronGripContext> options) : base(options) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
     }
 }

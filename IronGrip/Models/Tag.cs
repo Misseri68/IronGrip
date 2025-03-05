@@ -14,7 +14,7 @@ namespace IronGrip.Models
         public string Nombre { get; set; }
 
         [Column("color")]
-        public string color { get; set; }
+        public string Color { get; set; }
 
         [Column("id_usuario")] //FOREIGN KEY
         public int IdUsuario { get; set; }
