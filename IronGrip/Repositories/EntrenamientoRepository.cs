@@ -12,12 +12,12 @@ namespace IronGrip.Repositories
             this.context = context;
         }
 
-        public async Task<EntrenamientoRepository> GetDatosEntrenamiento(int idEntrenamiento)
-        {
-            string sql = "SELECT * FROM VistaEntrenamientoDetalle";
-        }
+        //public async Task<EntrenamientoRepository> GetDatosEntrenamiento(int idEntrenamiento)
+        //{
+        //    string sql = "SELECT * FROM VistaEntrenamientoDetalle";
+        //}
 
-        }
+        //}
 
     }
 }

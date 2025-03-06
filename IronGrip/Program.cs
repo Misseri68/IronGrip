@@ -19,6 +19,7 @@ builder.Services.AddDbContext<IronGripContext>(options =>
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<AuthRepository>();
+builder.Services.AddTransient<TagRepository>();
 
 var app = builder.Build();
 

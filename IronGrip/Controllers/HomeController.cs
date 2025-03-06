@@ -6,20 +6,20 @@ namespace IronGrip.Controllers
 {
     public class HomeController : Controller
     {
-        Usuario user;
+    
 
         public HomeController() {
-            this.user = HttpContext.Session.GetObject<Usuario>("USER");
         }
 
 
         public IActionResult Home()
         {
-            if(this.user == null)
+            Usuario user  = HttpContext.Session.GetObject<Usuario>("USER");
+            if (user == null)
             {
                 return RedirectToAction("Login", "Auth");
             }
-            return View(this.user);
+            return View(user);
         }
     }
 }

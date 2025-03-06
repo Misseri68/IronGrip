@@ -1,0 +1,30 @@
+﻿@model List<Tag>
+
+<div>
+    <h3>Tags</h3>
+    <button style="corner-radius:15px;" class="btn btn-danger"><a asp-action="Create" asp-controller="Tags">Nuevo Tag</a></button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Color</th>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Tag tag in Model) 
+        {
+        <tr>
+            <td style="background-color:@tag.Color"></td>
+            <td>@tag.Nombre</td>
+            <td>
+                <a>Editar</a>
+                <a>Borrar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
