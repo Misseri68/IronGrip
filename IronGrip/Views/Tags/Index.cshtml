@@ -5,7 +5,7 @@
     <button style="corner-radius:15px;" class="btn btn-danger"><a asp-action="Create" asp-controller="Tags">Nuevo Tag</a></button>
 </div>
 
-<table class="table">
+<table class="gym-table">
     <thead>
         <tr>
             <th>Color</th>
@@ -28,3 +28,32 @@
     </tbody>
 </table>
 
+<style>
+
+
+    .gym-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .gym-table th {
+            background-color: #FC5B04;
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .gym-table td {
+            background-color: #333;
+            color: orange;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #FC5B04;
+        }
+
+        .gym-table tbody tr:hover {
+            background-color: #444;
+        }
+</style>

@@ -3,10 +3,10 @@
     public class VistaEntrenamiento
     {
         public int Id { get; set; }
-        List<Tag> Tags { get; set; }
-        List<Ejercicio> Ejercicios { get; set; }
-        List<Serie> Series { get; set; }
-        List<EjercicioHecho> EjerciciosHechos { get; set; }
+        public List<Tag> Tags { get; set; }
+        public List<Ejercicio> Ejercicios { get; set; }
+        public List<Serie> Series { get; set; }
+        public List<EjercicioHecho> EjerciciosHechos { get; set; }
 
     }
 }

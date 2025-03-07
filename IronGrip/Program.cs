@@ -7,6 +7,7 @@ using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMemoryCache();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllersWithViews()
     .AddViewLocalization()
@@ -20,6 +21,7 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<AuthRepository>();
 builder.Services.AddTransient<TagRepository>();
+builder.Services.AddTransient<EntrenamientoRepository>();
 
 var app = builder.Build();
 

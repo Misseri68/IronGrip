@@ -1,11 +1,23 @@
-﻿<h4>Nuevo entrenamiento</h4>
+﻿@model List<Tag>
+
+<h4>Entrenamiento nuevo</h4>
 
 <form method="post">
-    ¿Hoy que toca?
-    <select>
-        <option>Nuevo Tag</option>
-        //Aquí iría tags
+   <h6>Hoy qué toca?</h6>
+    <select id="selectTag">
+        <option> 
+            <button value="newTag">+ Nuevo tag</button>
+        </option>
+        @if(Model!=null){
+            @foreach(Tag tag in Model){
+                <option value="@tag.Id" data-color="@tag.Color">
+                    @tag.Nombre
+                    </option>
+            }
+        }
     </select>
+    <br />
+    <ul id="selectedTags"></ul>
     <br />
     Ejercicios
     <br />
@@ -13,3 +25,18 @@
     
     <button>Enviar</button>
 </form>
+
+@section Scripts{
+    <script>
+        $(document.ready(function(){
+            $("#selectTag").change(function(){
+                var valorSelect = $(this).val();
+                if(valorSelect === "newTag"){
+                    window.location.href = "/Entrenamientos/Create"
+                }
+        })
+
+
+    
+    </script>
+}

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IronGrip.Models
 {
-    [Table("entremaniento")]
+    [Table("entrenamiento")]
     public class Entrenamiento
     {
         [Key]
