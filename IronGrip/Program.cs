@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMemoryCache();
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllersWithViews()
     .AddViewLocalization()
     .AddDataAnnotationsLocalization();
@@ -43,13 +42,6 @@ var supportedCultures = new[]
     new CultureInfo("es"),
     new CultureInfo("en") 
 };
-
-app.UseRequestLocalization(new RequestLocalizationOptions
-{
-    DefaultRequestCulture = new RequestCulture("es"),
-    SupportedCultures = supportedCultures, 
-    SupportedUICultures = supportedCultures 
-});
 
 app.UseStaticFiles();
 

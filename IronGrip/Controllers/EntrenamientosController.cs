@@ -27,15 +27,48 @@ namespace IronGrip.Controllers
 
         public async Task<IActionResult> Create()
         {
+            VistaEntrenamiento model;
             if(memoryCache.Get("NEWENTRENAMIENTO") == null)
             {
-                VistaEntrenamiento vistaEntrenamiento = new VistaEntrenamiento();
-                vistaEntrenamiento.Id = await this.repo.GetMaxIdAsync();
-                memoryCache.Set("NEWENTRENAMIENTO", vistaEntrenamiento);
+                model = new VistaEntrenamiento();
+                model.Id = await this.repo.GetMaxIdAsync();
+                model.SelectedTags = new List<int>();
+                memoryCache.Set("NEWENTRENAMIENTO", model);
             }
+            else
+            {
+                model = memoryCache.Get<VistaEntrenamiento>("NEWENTRENAMIENTO");
+            }
+
             int idUsuario = HttpContext.Session.GetObject<Usuario>("USER").Id;
-            List<Tag> tags = await this.tagRepo.GetTagsAsync(idUsuario);
-            return View(tags);
+            model.TagsDisponibles = await this.tagRepo.GetTagsAsync(idUsuario);
+            return View(model);
         }
+
+        [HttpPost]
+        public IActionResult UpdateTags(string tagsSeleccionadosIds)
+        {
+            var vista = memoryCache.Get<VistaEntrenamiento>("NEWENTRENAMIENTO");
+            if (vista != null)
+            {
+                if (vista.SelectedTags != null)
+                {
+                    vista.SelectedTags = tagsSeleccionadosIds?
+                   .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                   .Select(int.Parse).ToList();
+
+                    memoryCache.Set("NEWENTRENAMIENTO", vista);
+                }
+                else
+                {
+                    vista.SelectedTags = new List<int>();
+                    memoryCache.Set("NEWENTRENAMIENTO", vista);
+                }
+            }
+              
+            return RedirectToAction("Create");
+        }
+
+
     }
 }
