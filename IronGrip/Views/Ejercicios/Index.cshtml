@@ -1,0 +1,12 @@
+﻿@model List<Ejercicio>
+
+<button><a asp-action="Create"> Crear nuevo entrenamiento </a></button>
+
+@if(Model != null){
+    @foreach(Ejercicio ej in Model){
+        <img src="~/images/uploads/@ej.Nombre"  style="width:100px; height:100px;"/>
+        <p>@ej.Nombre</p>
+    }
+}else{
+    <p>No hay ejercicios aún.</p>
+}

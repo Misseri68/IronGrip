@@ -12,5 +12,7 @@ namespace IronGrip.Data
         public DbSet<Tag> Tags { get; set; }
 
         public DbSet<Entrenamiento> Entrenamientos { get; set; }
+
+        public DbSet<Ejercicio> Ejercicios { get; set; }
     }
 }

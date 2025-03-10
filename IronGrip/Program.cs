@@ -1,4 +1,5 @@
 using IronGrip.Data;
+using IronGrip.Helpers;
 using IronGrip.Repositories;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<AuthRepository>();
 builder.Services.AddTransient<TagRepository>();
 builder.Services.AddTransient<EntrenamientoRepository>();
+builder.Services.AddTransient<EjercicioRepository>();
+builder.Services.AddSingleton<HelperPathProvider>();
+
 
 var app = builder.Build();
 

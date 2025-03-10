@@ -1,6 +1,4 @@
-﻿@inject IStringLocalizer<SharedResource> Localizer
-
-@model Usuario
+﻿@model Usuario
 
 <h3> ¡Al ataque, @Model.Nombre!</h3>
 
@@ -13,7 +11,7 @@
 <div class="card">
     <div class="card-body">
         <button>Entrenamientos</button>
-        <button>Ejercicios</button>
+        <button> <a asp-controller="Ejercicios" asp-action="Index">Ejercicios</a></button>
     </div>
 </div>
 
