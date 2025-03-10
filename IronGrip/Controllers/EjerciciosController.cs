@@ -18,9 +18,11 @@ namespace IronGrip.Controllers
             this.repo = repo;
             this.helperPath = helperPath;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            int idUsuario = HttpContext.Session.GetObject<Usuario>("USER").Id;
+            List<Ejercicio> ejercicios = await this.repo.GetEjerciciosAsync(idUsuario);
+            return View(ejercicios);
         }
 
         public IActionResult Create()

@@ -12,6 +12,19 @@ namespace IronGrip.Repositories
             this.context = context;
         }
 
+
+        public async Task<List<Ejercicio>> GetEjerciciosAsync(int idUsuario)
+        {
+            List<Ejercicio> ejercicios = await this.context.Ejercicios
+                .Where( x => x.IdUsuario == idUsuario).ToListAsync();
+            if (ejercicios != null)
+            {
+                return ejercicios;
+            }
+            else return null;
+        }
+
+
         public async Task CreateEjercicioAsync(string nombre,
             string descripcion, string foto, bool esTiempo, int IdUsuario)
         {
@@ -39,6 +52,8 @@ namespace IronGrip.Repositories
                 return await this.context.Ejercicios.MaxAsync(x => x.Id) + 1;
             }
         }
+
+
 
 
     }
