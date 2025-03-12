@@ -24,6 +24,12 @@ namespace IronGrip.Repositories
             else return null;
         }
 
+        public async Task<Ejercicio> FindEjercicioAsync(int id)
+        {
+            return await this.context.Ejercicios
+                .Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
 
         public async Task CreateEjercicioAsync(string nombre,
             string descripcion, string foto, bool esTiempo, int IdUsuario)

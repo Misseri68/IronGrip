@@ -7,7 +7,7 @@ namespace IronGrip.Models
     public class EjercicioTag
     {
         [Column("id_ejercicio")]
-        public int IdEntrenamiento { get; set; }
+        public int IdEjercicio { get; set; }
 
 
         [Column("id_tag")]

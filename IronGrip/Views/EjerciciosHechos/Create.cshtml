@@ -1,0 +1,13 @@
+﻿@model List<Ejercicio>
+
+<button onclick="window.history.back()">Volver atrás</button>
+<form method="post">
+    <h3>Primero, selecciona un ejercicio.</h3>
+    <select name="ejercicio">
+        @foreach(Ejercicio ej in Model)
+        {
+            <option value="@ej.Id"> @ej.Nombre</option>
+        }
+    </select>
+    <button>Seleccionar Ejercicio</button>
+</form>

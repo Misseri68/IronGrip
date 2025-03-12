@@ -9,7 +9,7 @@
 
     <select id="tag-select">
         <option value="">-- Selecciona un tag --</option>
-        <option value="newTag">+ Nuevo tag</option>
+        <option value="newTag"><a asp-action="Create" asp-controller="Tags">+ Nuevo tag</a></option>
         @if(Model.TagsDisponibles != null)
         {
             @foreach (var tag in Model.TagsDisponibles)
@@ -33,16 +33,7 @@
 </div>
 
 <div>
-    <h3>Ejercicios</h3>
-    @if(Model.EjerciciosHechos != null)
-    {
-        @Html.Partial("_partialEjercicioCard", Model.EjerciciosHechos )
-    }
-    else
-    {
-        <text>ta null la cosa</text>
-    }
-
+        @Html.Partial("_partialEjercicioCard", Model.EjerciciosHechosModel ?? new List<PartialEjercicioModel>())
 </div>
 
 <form method="post">
@@ -143,6 +134,21 @@
 
         // Al inicio: desactivar opciones seleccionadas
         selectedTagsSet.forEach(id => desactivarOpcion(id));
+
+
+
+        $(document).ready(function () {
+            console.log("HOLA")
+            $('input[name="listGroupCheckableRadios"]').on('click', function () {
+                const selectedValue = $(this).val();
+                if (selectedValue === 'newEjercicio') {
+                    window.location.href = "/EjerciciosHechos/Create/";
+                }
+            });
+        });
+
+
+
     </script>
 }
 

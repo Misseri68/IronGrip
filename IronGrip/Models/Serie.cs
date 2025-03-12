@@ -6,6 +6,13 @@ namespace IronGrip.Models
     [Table("serie")]
     public class Serie
     {
+
+        public Serie()
+        {
+            this.NumSeries = 1;
+            this.Repeticiones = 10;
+        }
+
         [Key]
         [Column("id_serie")]
         public int Id { get; set; }

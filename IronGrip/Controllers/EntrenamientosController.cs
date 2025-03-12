@@ -27,12 +27,13 @@ namespace IronGrip.Controllers
 
         public async Task<IActionResult> Create()
         {
+            int idUsuario = HttpContext.Session.GetObject<Usuario>("USER").Id;
             VistaEntrenamiento model;
             if(memoryCache.Get("NEWENTRENAMIENTO") == null)
             {
                 model = new VistaEntrenamiento();
-                model.Id = await this.repo.GetMaxIdAsync();
-                model.SelectedTags = new List<int>();
+                model.Id = 1;
+                model.Entrenamiento.IdUsuario = idUsuario;
                 memoryCache.Set("NEWENTRENAMIENTO", model);
             }
             else
@@ -40,8 +41,8 @@ namespace IronGrip.Controllers
                 model = memoryCache.Get<VistaEntrenamiento>("NEWENTRENAMIENTO");
             }
 
-            int idUsuario = HttpContext.Session.GetObject<Usuario>("USER").Id;
             model.TagsDisponibles = await this.tagRepo.GetTagsAsync(idUsuario);
+
             return View(model);
         }
 

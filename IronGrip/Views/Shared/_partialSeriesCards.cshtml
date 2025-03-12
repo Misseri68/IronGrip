@@ -1,31 +1,33 @@
-﻿@model List<PartialEjercicioModel>
+﻿@model bool
+@{
+    
+}
+<h1>Ejercicio hecho!</h1>
 
 <div class="list-group list-group-checkable d-grid gap-2 border-0">
 
 
-    <input class="list-group-item-check newEjercicio" type="radio" name="listGroupCheckableRadios" id="newEjercicio" value="newEjercicio">
-    <label class="list-group-item rounded-3 py-3" for="newEjercicio" value="newEjercicio">
-        ➕ Realizar ejercicio
+    <input class="list-group-item-check pe-none newEjercicio" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1" value="newEjercicio">
+    <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios1">
+        ➕ Añadir serie
         <span class="d-block small opacity-50">Elige o crea un nuevo ejercicio, ¡y a darle duro!</span>
     </label>
-
-    @if(Model != null)
-    {
-        @foreach (PartialEjercicioModel ej in Model)
-        {
+  
+      
             <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios3" value="">
             <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios3">
-                @ej.Ejercicio.Nombre
-                <span class="d-block small opacity-50">nºSeries: @ej.NumTotalSeries , Media de Kg: @ej.MediaKilos, nºRepeticiones: @ej.NumTotalRepes</span>
+               
+                <span class="d-block small opacity-50"><button>-</button>
+                    nºSeries:otalRepes
+                    <button>+</button></span>
             </label>
-        }
-    }
+
 </div>
 
 
 
 <style>
-<!--Estilos de bootstrap para las cards -->
+    <!-- Estilos de bootstrap para las cards -->
     .list-group {
         width: 100%;
         max-width: 460px;
@@ -65,6 +67,7 @@
 
         .list-group-item-check[disabled] + .list-group-item,
         .list-group-item-check:disabled + .list-group-item {
+            pointer-events: none;
             filter: none;
             opacity: .5;
         }
@@ -92,7 +95,8 @@
 
     .list-group-radio .form-check-input[disabled] + .list-group-item,
     .list-group-radio .form-check-input:disabled + .list-group-item {
+        pointer-events: none;
         filter: none;
         opacity: .5;
     }
-    </style>
+</style>
